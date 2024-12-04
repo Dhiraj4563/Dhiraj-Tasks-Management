@@ -1,38 +1,248 @@
-.App {
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #350808;
+}
+
+.app {
   text-align: center;
+  padding: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  color: #fdfafa;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.todo-container {
+  max-width: 480px;
+  margin: 15px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Task input styles */
+.task-input {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+  margin-bottom: 20px;
+  
+}
+
+.task-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #0b0433;
+  border-radius: 4px;
+  
+}
+
+.task-input button {
+  background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.task-input button:hover {
+  background-color: #27020d;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Task list styles */
+.task-list {
+  margin-top: 20px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background: #140345;
+  transition: transform 0.2s ease;
+  color: #ddd;
+}
+
+.task-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(6, 1, 20, 0.1);
+}
+
+.task-details span {
+  display: block;
+}
+
+.task-date {
+  font-size: 0.8rem;
+  color: #f6eeee;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #edf8ef;
+}
+
+/* Buttons inside task actions */
+.task-actions button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-actions button:hover {
+  background-color: #e62e24;
+}
+
+/* Reminder modal */
+.reminder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(15, 11, 227);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000;
+  color: #ddd;
+}
+
+.reminder h2 {
+  margin: 0 0 10px;
+}
+
+.reminder button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reminder button:hover {
+  background-color: #0056b3;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens: 600px and below */
+@media (max-width: 600px) {
+  .todo-container {
+    width: 90%;
+    padding: 15px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .task-input {
+    flex-direction: column;
+  }
+
+  .task-input input,
+  .task-input button {
+    width: 100%;
+  }
+
+  .task-input button {
+    margin-top: 10px;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-actions {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .task-actions button {
+    margin-right: 10px;
+  }
+}
+/* Task actions */
+.task-actions {
+  position: relative;
+}
+
+.options-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.options-icon:hover {
+  color: #0056b3;
+}
+
+.options-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.options-menu button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+}
+
+.options-menu button:hover {
+  background: #f5f5f5;
+  color: #007bff;
+}
+
+/* Medium screens: 768px and below */
+@media (max-width: 768px) {
+  .todo-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .task-item {
+    flex-wrap: wrap;
+  }
+
+  .task-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Large screens: 1200px and above */
+@media (min-width: 1200px) {
+  .todo-container {
+    max-width: 800px;
+  }
+
+  .task-item {
+    padding: 15px;
   }
 }
